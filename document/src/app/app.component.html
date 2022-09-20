@@ -1,0 +1,161 @@
+<table datatable [dtOptions]="dtOptions" class="row-border hover">
+  <thead>
+    <tr>
+      <th>Project Name</th>
+      <th>Project Description</th>
+      <th>Start Date</th>
+      <th>Status</th>
+      <th>Doc processed</th>
+      <th>Enable Review</th>
+      <th>Bypass Analyst</th>
+      <th>Preview Image</th>
+      <th>Qc%</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let data of datas;let i = index" style="border: 1px solid rgba(0, 0, 0, 0.15)!important;">
+    <tr style="height: 63px">
+      <td (click)="selectItemCoverages(i)" (click)="data.isExpand = !data.isExpand">
+        <i *ngIf="!data.isExpand" class="bi bi-chevron-down"></i>
+        <i *ngIf="data.isExpand" class="bi bi-chevron-up"></i>{{data.ProjectName}}
+      </td>
+      <td><span class="border padding">{{data.ProjectDescrpition}} </span>
+      </td>
+      <td>{{data.StartDate}}</td>
+      <td [ngClass]="{'chipGreen': data.Status === 'active' , 'chipRed': data.Status === 'inactive'}">{{data.Status}}
+      </td>
+      <td>{{data.DocProcessed}}</td>
+      <td>
+        <div class="form-check form-switch">
+          <input class="form-check-input opacity-10 bg-success border border-success" type="checkbox" role="switch"
+            id="flexSwitchCheckDefault" value="{{data.EnablePreview}}" checked>
+        </div>
+      </td>
+      <td>
+        <div class="form-check form-switch">
+          <input class="form-check-input opacity-10 bg-success border border-success" type="checkbox" role="switch"
+            id="flexSwitchCheckDefault" value="{{data.Bypass}}">
+        </div>
+      </td>
+      <td>
+        <button type="button" class="dropdown-toggle" (click)="triggerModal(modalData)" data-bs-toggle="dropdown"
+          style="font-size: 15px;background-color: white;border: 1px solid rgba(0, 0, 0, 0.15)!important;">
+          sample window </button>
+        <!-- <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Link 1</a></li>
+            <li><a class="dropdown-item" href="#">Link 2</a></li>
+            <li><a class="dropdown-item" href="#">Link 3</a></li>
+          </ul> -->
+      </td>
+      <td><span class="border padding">{{data.QC}}</span></td>
+    </tr>
+
+    <tr class="" *ngIf="data.isExpand">
+      <td colspan="9">
+        <table style="padding-left:50px;width: -webkit-fill-available;">
+          <thead>
+            <tr>
+              <th>Document Type</th>
+              <th>Document Description</th>
+              <th style="color:red">Attribute</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> <input type="text" class="form-control" id="usr">
+              </td>
+              <td> <input type="text" class="form-control" id="usr">
+              </td>
+              <td>
+                <span class="att"> 6 </span>
+              </td>
+              <td class="chipGreen">done</td>
+
+            </tr>
+            <tr>
+              <td> <input type="text" class="form-control" id="usr">
+              </td>
+              <td> <input type="text" class="form-control" id="usr">
+              </td>
+              <td>
+                <span class="att"> 6 </span>
+              </td>
+              <td class="chipGreen">done</td>
+
+            </tr>
+            <tr>
+              <td> <input type="text" class="form-control" id="usr">
+              </td>
+              <td> <input type="text" class="form-control" id="usr">
+              </td>
+              <td>
+                <span class="att"> 6 </span>
+              </td>
+              <td class="chipGreen">done</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #modalData let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title" style="font-size: 19px;">Manage Attribute</h4>
+
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6" style="border-right: 1px solid gray">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+            <label class="form-check-label"> Select Attribute</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+            <label class="form-check-label">Attribute</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" unchecked>
+            <label class="form-check-label">Attribute</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" unchecked>
+            <label class="form-check-label">Attribute</label>
+          </div>
+          <div>
+            <button type="button" class="btn btn-secondary">Add Attribute</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+            <label class="form-check-label"> Select Attribute</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+            <label class="form-check-label">Attribute</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" unchecked>
+            <label class="form-check-label">Attribute</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" unchecked>
+            <label class="form-check-label">Attribute</label>
+          </div>
+          <div>
+            <button type="button" class="btn btn-secondary">Remove Attribute</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" style="background-color:rgb(255, 119, 0)"
+      (click)="modal.close('Save click')">Define Rules</button>
+  </div>
+</ng-template>
